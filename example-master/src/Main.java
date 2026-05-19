@@ -4,9 +4,10 @@ public class Main {
         WeightedGraph<String> weightedGraph = new WeightedGraph<>(true);
         fillWithWeights(weightedGraph);
 
-        System.out.println("Dijkstra:");
-        Search<String> djk = new DijkstraSearch<>(weightedGraph, "Almaty");
-        outputPath(djk, "Kyzylorda");
+        if (start != null && end != null) {
+            System.out.println("Dijkstra:");
+            Search<String> djk = new DijkstraSearch<>(weightedGraph, start);
+            outputPath(djk, end);
 
 
         System.out.println("--------------------------------");
@@ -20,9 +21,12 @@ public class Main {
 
         System.out.println("--------------------------------");
 
-        System.out.println("BFS:");
-        Search<String> bfs = new BreadthFirstSearch<>(graph, "Almaty");
-        outputPath(bfs, "Kyzylorda");
+            System.out.println("BFS:");
+            Search<String> bfs = new BreadthFirstSearch<>(weightedGraph, start);
+            outputPath(bfs, end);
+        } else {
+            System.out.println("Start or End vertex not found in graph!");
+        }
     }
 
     public static void fillWithoutWeights(UnweightedGraph<String> graph) {
